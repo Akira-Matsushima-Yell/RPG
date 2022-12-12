@@ -3,10 +3,10 @@ package monster;
 import bases.Monster;
 import utils.Dice;
 
-public class Oak  extends Monster{
-	public Oak(String name, String weapon){
-		super(name, weapon );
+public class Oak extends Monster {
+	public Oak(String name, String weapon) {
+		super(name, weapon);
 		this.hp = Dice.get(170, 230);
-		this.offensive =Dice.get(9, 15);
+		this.offensive = Dice.get(9, 15);
 	}
 }
