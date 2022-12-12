@@ -14,7 +14,7 @@ public abstract class Human extends Living {
 	public void attack(Living target) {
 		// 1から10までのサイコロを振り、自分の攻撃力とかけ合わせた値を相手に与えるダメージとする
 
-		int num = Dice.get(1, 11) * getOffensive();
+		int num = Dice.get(1, 10) * getOffensive();
 		// 相手のHPをダメージ値だけ減らす
 		target.setHp(target.getHp() - num);
 		// 自分の攻撃力を1だけ減らす
