@@ -11,6 +11,7 @@ import humans.Wizard;
 import monster.Dragon;
 import monster.Oak;
 import monster.Slime;
+import utils.Dice;
 
 public class Main {
 
@@ -58,29 +59,45 @@ public class Main {
 			System.out.println("\n[人間のターン！]\n");
 
 			// 人間グループから1人選択
-		    choiceHuman(humans);
+			Human human= choiceHuman(humans);
 			// モンスターグループから1人選択
-			choiceMonster(monsters);
+			Monster monster = choiceMonster(monsters);
 			// 選ばれた人間が、選ばれたモンスターを攻撃
-			Human man = new Human();
-			man.attack(choiceMonster(monsters));
+			human.attack(monster);
 				
 			// モンスターのHPが0以下になれば、モンスターは倒れ、そのモンスターをモンスターグループから削除
 			
+			if(monster.getHp()<=0) {
+				System.out.println("★「"+ monster.getName() +"」は倒れた。");
+				monsters.remove(monster);
+			};
 			// モンスターグループに誰もいなくなれば、人間グループの勝利
-
+			if(monsters.size()==0) {
+				System.out.println("★★ ==== 決着がついた！！ ==== ★★");
+				System.out.println(" #### 人間達は勝利した！！ ####");
+				break;
+			}
 			System.out.println("\n[モンスターのターン！]\n");
 			
 			// 人間グループから1人選択
-			
+			 human= choiceHuman(humans);
 			// モンスターグループから1人選択
-			
+			 monster = choiceMonster(monsters);
 			// 選ばれたモンスターが、選ばれた人間を攻撃
-
+			monster.attack(human);
 			// 人間のHPが0以下になれば、人間は倒れ、その人間をモンスターグループから削除
-
+			if(human.getHp()<=0) {
+				System.out.println("★「"+ human.getName() +"」は倒れた。");
+				humans.remove(human);
+				
+			};
 			// 人間グループに誰もいなくなれば、人間グループの敗北
-			
+			if(humans.size()==0) {
+				System.out.println("★★ ==== 決着がついた！！ ==== ★★");
+				System.out.println(" #### モンスター側が勝利した！！ ####");
+				break;
+			}
+		
 			// 現在の各グループの状態を一覧表示
 			showGroupInfos(humans, monsters);
 			
@@ -93,14 +110,14 @@ public class Main {
 	}
 	// 引数でもらった人間グループリストからランダムに1人を選択し、その結果を戻り値とするメソッド
 		public static Human choiceHuman(List<Human> humans) {
-			Human human = humans.get(Rand.get(0, humans.size() - 1));
+			Human human = humans.get(Dice.get(0, humans.size() - 1));
 			System.out.printf("人間グループから 「%s」 のお出ましだ！\n", human.getName());
 			return human;
 		}
 
 		// 引数でもらったモンスターグループリストからランダムに1人を選択し、その結果を戻り値とするメソッド
 		public static Monster choiceMonster(List<Monster> monsters) {
-			Monster monster = monsters.get(Rand.get(0, monsters.size() - 1));
+			Monster monster = monsters.get(Dice.get(0, monsters.size() - 1));
 			System.out.printf("モンスターグループから 「%s」 のお出ましだ！\n", monster.getName());
 			return monster;
 		}

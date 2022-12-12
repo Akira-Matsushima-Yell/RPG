@@ -16,11 +16,11 @@ public abstract class Human extends Living {
 	 
 		int num = Dice.get(1, 11) * getOffensive();
 		// 相手のHPをダメージ値だけ減らす
-		int da = target.hp-num;
+		target.setHp(target.getHp()-num);
 		// 自分の攻撃力を1だけ減らす
 		setOffensive(getOffensive()-1);
 		//
-		String profile =this.name +"が　" + this.weapon +"で攻撃!" +target +"に" + num + "のダメージを与えた。" ;
+		String profile =this.name +"が　" + this.weapon +"で攻撃!" +target.name +"に" + num + "のダメージを与えた。" ;
 		profile += "しかし自分の攻撃力も1減少した。";
 		System.out.println(profile);
 	}
