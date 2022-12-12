@@ -8,9 +8,9 @@ import bases.Monster;
 import humans.Brave;
 import humans.Fighter;
 import humans.Wizard;
-import monster.Dragon;
-import monster.Oak;
-import monster.Slime;
+import monsters.Dragon;
+import monsters.Oak;
+import monsters.Slime;
 import utils.Dice;
 
 public class Main {

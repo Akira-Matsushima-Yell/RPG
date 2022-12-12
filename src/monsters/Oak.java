@@ -1,4 +1,4 @@
-package monster;
+package monsters;
 
 import bases.Monster;
 import utils.Dice;
